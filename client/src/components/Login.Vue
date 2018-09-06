@@ -4,27 +4,24 @@
       <div class="white elevation-2">
 
         <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
+          <v-toolbar-title>Login</v-toolbar-title>
         </v-toolbar>
-        <form>
-          <div class="pl-4 pr-4 pt-2 pb-2 ">
-            <v-text-field name="email" label="email" v-model="email" class="input-group--focused"></v-text-field>
-            <br />
-            <v-text-field
-              v-model="password"
-              :rules="[rules.required, rules.min]"
-              :type="password"
-              name="input-10-1"
-              label="password"
-              hint="At least 8 characters"
-              autocomplete="new-password"></v-text-field>
-              <br />
-              <div class="error" v-html="error"/>
-                <br  />
-                  <v-btn class="cyan" dark @click="register">Register</v-btn>
-                </div>
-        </form>
+        <div class="pl-4 pr-4 pt-2 pb-2 ">
+          <v-text-field name="email" label="email" v-model="email" class="input-group--focused"></v-text-field>
 
+                <br />
+                  <v-text-field
+                    v-model="password"
+                    :rules="[rules.required, rules.min]"
+                    :type="password"
+                    name="input-10-1"
+                    label="Password"
+                    hint="At least 8 characters"></v-text-field>
+            <br />
+            <div class="error" v-html="error"/>
+              <br  />
+                <v-btn class="cyan" dark @click="login">login</v-btn>
+              </div>
                 </div>
       </v-flex>
     </v-layout>
@@ -48,9 +45,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })

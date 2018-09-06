@@ -6,5 +6,11 @@ module.exports = (app) => {
   app.post('/register',
   AuthenticationControllerPolicy.register,
   AuthenticationController.register)
-  //ent Register Route
+  //end Register Route
+
+  //Start Login Route
+  app.post('/login',
+//  AuthenticationControllerPolicy.login,
+  AuthenticationController.login)
+  //end Login Route
 }
