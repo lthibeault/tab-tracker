@@ -1,47 +1,33 @@
 <template>
   <v-layout>
-    <v-flex xs3 offset-xs3>
-      <div class="white elevation-2">
-
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Login</v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2 ">
-          <form>
-            <v-text-field name="email" label="email" v-model="email" class="input-group--focused"></v-text-field>
-
-                  <br />
-                    <v-text-field
-                      v-model="password"
-                      :rules="[rules.required, rules.min]"
-                      type="password"
-                      name="input-10-1"
-                      label="Password"
-                      hint="At least 8 characters"></v-text-field>
-              <br />
-              <div class="error" v-html="error"/>
-                <br  />
-                  <v-btn class="cyan" dark @click="login">login</v-btn>
-          </form>
-
-              </div>
-                </div>
-      </v-flex>
-    </v-layout>
+    <v-flex xs6 offset-xs3>
+    <panel title="Login">
+      <form>
+        <v-text-field name="email" label="email" v-model="email" class="input-group--focused" autocomplete="email"></v-text-field>
+        <br />
+        <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'visibility_off' : 'visibility'"  @click:append="show = !show" :rules="[rules.required, rules.min]" name="password" label="Password" hint="At least 8 characters" autocomplete="new-password"></v-text-field>
+        <br />
+        <div class="error" v-html="error"/>
+        <br  />
+        <v-btn class="cyan" dark @click="login">login</v-btn>
+      </form>
+    </panel>
+  </v-flex>
+  </v-layout>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
+
 export default {
   data () {
     return {
-      show1: false,
+      show: false,
       rules: {
         required: value => !!value || 'Required.',
-        min: v => v.length >= 8 || 'Min 8 characters',
-        emailMatch: () => ('The email and password you entered don\'t match')
+        min: v => v.length >= 8 || 'Min 8 characters'
       },
-
       email: '',
       password: '',
       error: null
@@ -60,6 +46,9 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>
