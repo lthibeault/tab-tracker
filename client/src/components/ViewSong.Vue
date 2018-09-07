@@ -2,7 +2,6 @@
   <v-layout>
     <v-flex xs6 offset-xs3>
       <panel title="Song">
-        
       </panel>
     </v-flex>
     </v-layout>
