@@ -1,7 +1,7 @@
 <template>
   <v-layout>
-    <v-flex xs6 offset-xs3>
-      <panel title="Songs">
+    <v-flex xs9 offset-xs3>
+      <panel title="Song">
           <v-btn class="cyan accent-2"
             slot="action"
             :to="{ name: 'songs-create'}"
@@ -30,7 +30,6 @@
                   light
                   small
                   absolute
-                  right
                   fab>
                     <v-icon>queue_music</v-icon>
                   </v-btn>
@@ -83,7 +82,8 @@ export default {
   }
 
 .album-image{
-  width: 70%;
+
+  height:50%;
   margin: 0 auto;
 }
 

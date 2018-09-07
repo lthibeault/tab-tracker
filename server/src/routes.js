@@ -15,6 +15,7 @@ module.exports = (app) => {
 
   //Start Songs Routes
   app.get('/songs', SongsController.index)
+  app.get('/songs/:songId', SongsController.show)
   app.post('/songs', SongsController.post)
   //end Songs Routes
 }
