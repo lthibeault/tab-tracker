@@ -34,4 +34,18 @@ module.exports = {
         })
     }
   },
+  async put (req, res) {
+    try {
+      const songs = await Song.update(req.body,{
+      where: {
+        id:req.params.songId
+      }
+    })
+      res.send(req.body)
+    } catch (err) {
+      res.status(400).send({
+        error: 'An Error has occured trying to Update the songs.'
+        })
+    }
+  }
 }

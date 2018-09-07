@@ -11,6 +11,16 @@
         <div class="song-genre">
           {{song.genre}}
         </div>
+        <v-btn class="cyan accent-2"
+          slot="action"
+          :to="{ name: 'song-edit', params:{ songID: song.id }}"
+          light
+          small
+          absolute
+          :song="song"
+          fab>
+            <v-icon>edit</v-icon>
+          </v-btn>
       </v-flex>
       <v-flex xs 6>
         <img class="album-image" :src="song.albumImage" /><br/>
