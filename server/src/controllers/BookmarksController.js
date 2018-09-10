@@ -23,7 +23,6 @@ module.exports = {
           {
             bookmarkId: bookmark.id
           }, bookmark.Song))
-     console.log('**bookmark****', bookmarks)
     res.send(bookmarks)
     } catch(err){
       console.log(err)

@@ -2,6 +2,8 @@ const AuthenticationController = require('./controllers/AuthenticationController
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const SongsController = require('./controllers/SongsController')
 const BookmarksController = require('./controllers/BookmarksController')
+const HistoriesController = require('./controllers/HistoriesController')
+
 
 module.exports = (app) => {
   //Start Register Route
@@ -26,5 +28,11 @@ module.exports = (app) => {
   app.post('/bookmarks', BookmarksController.post)
   app.delete('/bookmarks/:bookmarkId', BookmarksController.delete)
 //End Bookmark Routes
+
+//Start History Routes
+  app.get('/histories', HistoriesController.index)
+  app.post('/histories', HistoriesController.post)
+//End History Routes
+
 
 }

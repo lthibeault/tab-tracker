@@ -2,6 +2,7 @@
   <v-layout>
     <v-flex xs 3 class="mr-2">
       <songs-bookmarks />
+      <recently-viewed-songs class="mt-2"></recently-viewed-songs>
     </v-flex>
     <v-flex xs 6>
       <songs-search-panel></songs-search-panel>
@@ -15,12 +16,13 @@ import SongsService from '@/services/SongsService'
 import SongsPanel from './SongsPanel'
 import SongsSearchPanel from './SongsSearchPanel'
 import SongsBookmarks from './SongsBookmarks'
-
+import RecentlyViewedSongs from './RecentlyViewedSongs'
 export default {
   components: {
     SongsPanel,
     SongsSearchPanel,
-    SongsBookmarks
+    SongsBookmarks,
+    RecentlyViewedSongs
   },
   data () {
     return {
@@ -48,7 +50,7 @@ export default {
   font-size: 24px;
 }
 .song-genre {
-    font-size: 18px;
+  font-size: 18px;
   }
 
 .album-image{
