@@ -5,6 +5,8 @@ const morgan = require('morgan')
 const {sequelize} = require('./models')
 const config = require('./config/config')
 const app = express()
+require ('./passport')
+
 
 app.use(morgan('combined'))
 app.use(bodyParser.json())

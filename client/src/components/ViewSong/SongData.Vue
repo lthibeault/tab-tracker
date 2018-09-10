@@ -61,8 +61,7 @@ export default {
     async setBookmark () {
       try {
         this.bookmark = (await BookmarksService.post({
-          SongId: this.song.id,
-          UserId: this.user.id
+          SongId: this.song.id
         })).data
         console.log('bookmark')
       } catch (err) {
@@ -84,8 +83,7 @@ export default {
       return
     }
     const bookmarks = (await BookmarksService.index({
-      SongId: this.song.id,
-      UserId: this.user.id
+      SongId: this.song.id
     })).data
     if (bookmarks.length) {
       this.bookmark = bookmarks[0]

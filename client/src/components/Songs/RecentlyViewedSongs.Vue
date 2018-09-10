@@ -4,7 +4,7 @@
     :headers="headers"
     :pagination.sync="pagination"
     :items="histories">
-    <template slot="items" scope="props">
+    <template slot="items" slot-scope="props">
       <td class="text-xs-right">
         {{props.item.title}}
       </td>
@@ -46,9 +46,7 @@ export default {
   },
   async mounted () {
     if (this.isUserLoggedIn) {
-      this.histories = (await SongHistoryService.index({
-        UserId: this.user.id
-      })).data
+      this.histories = (await SongHistoryService.index()).data
     }
   }
 }
