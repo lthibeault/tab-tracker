@@ -16,23 +16,21 @@
       <panel title="Song Structure">
         <v-text-field :rules="[rules.required]" required multi-line name="lyrics" label="lyrics" v-model="song.lyrics" class="input-group--focused" autocomplete="lyrics"></v-text-field>
         <v-text-field :rules="[rules.required]" required multi-line name="tab" label="tab" v-model="song.tab" class="input-group--focused" autocomplete="tab"></v-text-field>
-      </panel><div>
+      </panel>
+      <div>
         <v-alert class="ml-4" :value="error" transition="scale-transition" error>
           {{error}}
-        </v-alert>﻿
+        </v-alert>
       </div>
       <v-btn class="cyan" dark @click="create">Create Song</v-btn>
     </v-flex>
   </v-layout>
 </template>
 <script>
-import Panel from '@/components/Panel'
 import SongsService from '@/services/SongsService'
 
 export default {
-  components: {
-    Panel
-  },
+
   data () {
     return {
       error: null,

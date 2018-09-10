@@ -12,15 +12,24 @@
           {{song.genre}}
         </div>
         <v-btn class="cyan accent-2"
-          slot="action"
-          :to="{ name: 'song-edit', params:{ songID: song.id }}"
-          light
-          small
-          absolute
-          :song="song"
-          fab>
+          v-if="isUserLoggedIn"
+          dark
+          :to="{name: 'song-edit',params () {return {songID: song.id}}}"
+          :song="song">
             <v-icon>edit</v-icon>
           </v-btn>
+          <v-btn class="cyan accent-2"
+            v-if="isUserLoggedIn && !bookmark"
+            dark
+            @click="setBookmark">
+              <v-icon>bookmark</v-icon>
+            </v-btn><br />
+            <v-btn class="cyan accent-2"
+                v-if="isUserLoggedIn && bookmark"
+              dark
+              @click="unSetBookmark">
+                <v-icon>un_bookmark</v-icon>
+              </v-btn>
       </v-flex>
       <v-flex xs 6>
         <img class="album-image" :src="song.albumImage" /><br/>
@@ -31,14 +40,52 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
-
+import {mapState} from 'vuex'
+import BookmarksService from '@/services/BookmarksService'
 export default {
   props: [
     'song'
   ],
-  components: {
-    Panel
+  data () {
+    return {
+      bookmark: null
+    }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
+  },
+  methods: {
+    async setBookmark () {
+      try {
+        this.bookmark = (await BookmarksService.post({
+          SongId: this.song.id,
+          UserId: this.$store.state.user.id
+        })).data
+        console.log('bookmark')
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async unSetBookmark () {
+      try {
+        console.log(this.bookmark.id)
+        await BookmarksService.delete(this.bookmark.id)
+        this.bookmark = null
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
+  async mounted () {
+    if (!this.isUserLoggedIn) {
+      return
+    }
+    this.bookmark = (await BookmarksService.index({
+      SongId: this.song.id,
+      UserId: this.$store.state.user.id
+    })).data
   }
 }
 </script>

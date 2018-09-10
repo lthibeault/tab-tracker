@@ -8,15 +8,11 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 
 export default {
   props: [
     'lyrics'
-  ],
-  components: {
-    Panel
-  }
+  ]
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

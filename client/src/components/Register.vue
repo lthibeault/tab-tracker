@@ -8,7 +8,11 @@
             <br />
             <v-text-field v-model="password" :type="show ? 'text' : 'password'" :append-icon="show ? 'visibility_off' : 'visibility'"  @click:append="show = !show" :rules="[rules.required, rules.min]" name="password" label="Password" hint="At least 8 characters" autocomplete="new-password"></v-text-field>
             <br />
-            <div class="error" v-html="error"/>
+            <div>
+              <v-alert class="ml-4" :value="error" transition="scale-transition" error>
+                {{error}}
+              </v-alert>
+            </div>
             <br  />
             <v-btn class="cyan" dark @click="register">Register</v-btn>
           </div>
@@ -20,7 +24,6 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 
 export default {
   data () {
@@ -46,19 +49,15 @@ export default {
         })
         this.$store.dispatch('setToken', 'token')
         this.$store.dispatch('setUser', 'user')
+        this.$router.push({name: 'songs'})
       } catch (error) {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.error{
-  color: red;
-}
+
 </style>
